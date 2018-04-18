@@ -43,15 +43,47 @@
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <div class="form-row">
-            <div class="col-12 col-md-9 mb-2 mb-md-0">
+            <div class="col-12 col-md-9 mb-2 mb-md-0 mx-auto">
               <input id="search" type="text" class="form-control form-control-lg" placeholder="Usuario a buscar">
             </div>
-            <div class="col-12 col-md-3">
-              <button class="btn btn-block btn-lg btn-primary" onclick="search()">Buscar</button>
+            <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
+              </br>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="text">
+                <label class="form-check-label" for="text">Texto</label>
+                <input class="form-control" id="text" placeholder="gatos">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="min_upload_date">
+                <label class="form-check-label" for="min_upload_date">Subido después de</label>
+                <input class="form-control" id="min_upload_date" placeholder="2018-03-01">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="max_upload_date">
+                <label class="text">Subido antes de</label>
+                <input class="form-control" id="max_upload_date" placeholder="2018-03-01">
+              </div>
+            </div>  
+            <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
+              </br>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="group_id">
+                <label class="form-check-label" for="group_id">ID Grupo</label>
+                <input class="form-control" id="group_id" placeholder="Id de un grupo">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="media">
+                <label class="form-check-label" for="media">Tipo</label>
+                <input class="form-control" id="media" placeholder="photos / videos">
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    </br>
+    <div class="col-12 col-md-2 mx-auto">
+      <button class="btn btn-block btn-lg btn-primary" onclick="search()">Buscar</button>
     </div>
   </header>
 
