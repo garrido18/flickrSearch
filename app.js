@@ -4,9 +4,29 @@ function search() {
 	$("#column3").empty();
 	$("#column4").empty();
 	var user = $("#search").val();
-	$.getJSON('https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key='
-		+ api_key + '&user_id=' + user +
-		'&format=json&nojsoncallback=1',
+	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key='+ api_key;	
+	if ($("#text").is(":checked")) {  
+		url = url + "&text=" + $("#textInput").val();
+	}
+	if ($("#min_upload_date").is(":checked")) {  
+		url = url + "&min_upload_date=" + $("#min_upload_dateInput").val();
+	}
+	if ($("#max_upload_date").is(":checked")) {  
+		url = url + "&max_upload_date=" + $("#max_upload_dateInput").val();
+	}
+	if ($("#group_id").is(":checked")) {  
+		url = url + "&group_id=" + $("#group_idInput").val();
+	}
+	if ($("#media").is(":checked")) {  
+		url = url + "&media=" + $("#mediaInput").val();
+	}
+	if ($("#text").is(":checked")) {  
+		url = url + "&text=" + $("#textInput").val();
+	}
+	
+	url = url + '&format=json&nojsoncallback=1';
+
+	$.getJSON(url ,
 		showImages
 	)
 
