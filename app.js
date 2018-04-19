@@ -26,7 +26,7 @@ function search() {
 	}
 	url = url + "&content_type=" + $('#type').val();
 	console.log(url.length)
-	if(url.length <= 127){
+	if(url.length <= 130){
 		url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getRecent&api_key=' + api_key;
 	}
 	url = url + '&format=json&nojsoncallback=1';
