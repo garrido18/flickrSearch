@@ -1,32 +1,37 @@
+var page = 0;
+
 function search() {
+	$("#column0").empty();
 	$("#column1").empty();
 	$("#column2").empty();
 	$("#column3").empty();
-	$("#column4").empty();
-	var user = $("#search").val();
-	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key='+ api_key;	
-	if ($("#text").is(":checked")) {  
+	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=' + api_key;
+	if ($("#userInput").val() != '') {
+		url = url + "&user_id=" + $("#userInput").val();
+	}
+	if ($("#textInput").val() != '') {
 		url = url + "&text=" + $("#textInput").val();
 	}
-	if ($("#min_upload_date").is(":checked")) {  
-		url = url + "&min_upload_date=" + $("#min_upload_dateInput").val();
-	}
-	if ($("#max_upload_date").is(":checked")) {  
+	if ($("#max_upload_dateInput").val() != '') {
 		url = url + "&max_upload_date=" + $("#max_upload_dateInput").val();
 	}
-	if ($("#group_id").is(":checked")) {  
+	if ($("#min_upload_dateInput").val() != '') {
+		url = url + "&min_upload_date=" + $("#min_upload_dateInput").val();
+	}
+	if ($("#group_idInput").val() != '') {
 		url = url + "&group_id=" + $("#group_idInput").val();
 	}
-	if ($("#media").is(":checked")) {  
-		url = url + "&media=" + $("#mediaInput").val();
+	if ($("#min_upload_dateInput").val() != '') {
+		url = url + "&min_upload_date=" + $("#min_upload_dateInput").val();
 	}
-	if ($("#text").is(":checked")) {  
-		url = url + "&text=" + $("#textInput").val();
+	url = url + "&content_type=" + $('#type').val();
+	console.log(url.length)
+	if(url.length <= 127){
+		url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getRecent&api_key=' + api_key;
 	}
-	
 	url = url + '&format=json&nojsoncallback=1';
 
-	$.getJSON(url ,
+	$.getJSON(url,
 		showImages
 	)
 
@@ -35,39 +40,21 @@ function search() {
 		for (i = 0; i < images.photos.photo.length; i++) {
 			var item = images.photos.photo[i];
 			var url = 'https://farm' + item.farm + ".staticflickr.com/" + item.server
-				+ '/' + item.id + '_' + item.secret + '.jpg';
-			console.debug(url);
-			switch (i % 4) {
-				case 0:
-					$("#column1").append($("<img/>").attr({
-						"class": "mx-auto d-block img-fluid",
-						"src": url
-					})
-					);
-					break;
-				case 1:
-					$("#column2").append($("<img/>").attr({
-						"class": "mx-auto d-block img-fluid",
-						"src": url
-					})
-					);
-					break;
-				case 2:
-					$("#column3").append($("<img/>").attr({
-						"class": "mx-auto d-block img-fluid",
-						"src": url
-					})
-					);
-					break;
-				case 3:
-					$("#column4").append($("<img/>").attr({
-						"class": "mx-auto d-block img-fluid",
-						"src": url
-					})
-					);
-					break;
-			}
+				+ '/' + item.id + '_' + item.secret + '_b.jpg';
+			var column = '#column' + i % 4;
+			$(column).append($("<a/>").attr({
+				"href": url,
+				"data-lightbox": "image",
+				"id": "image" + i,
+			}));
+			var image = "#image" + i;
+			$(image).append($("<img/>").attr({
+				"class": "mx-auto d-block img-fluid",
+				"src": url,
+			})
+			)
 		}
 	}
 
 }
+
