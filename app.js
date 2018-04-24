@@ -21,8 +21,11 @@ function search() {
 	if ($("#group_idInput").val() != '') {
 		url = url + "&group_id=" + $("#group_idInput").val();
 	}
-	if ($("#min_upload_dateInput").val() != '') {
-		url = url + "&min_upload_date=" + $("#min_upload_dateInput").val();
+	if ($("#min_taken_dateInput").val() != '') {
+		url = url + "&min_taken_date=" + $("#min_taken_dateInput").val();
+	}
+	if ($("#max_taken_dateInput").val() != '') {
+		url = url + "&max_taken_date=" + $("#max_taken_dateInput").val();
 	}
 	url = url + "&content_type=" + $('#type').val();
 	console.log(url.length)
