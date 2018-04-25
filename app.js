@@ -1,6 +1,8 @@
 var page = 0;
 
 function search() {
+
+	
 	$("#column0").empty();
 	$("#column1").empty();
 	$("#column2").empty();
@@ -57,6 +59,12 @@ function search() {
 			)
 		}
 	}
-
 }
 
+$( function() {
+	$.datepicker.setDefaults($.datepicker.regional["es"]);
+	$( "#min_upload_dateInput" ).datepicker();
+	$( "#max_upload_dateInput" ).datepicker();
+	$( "#min_taken_dateInput" ).datepicker();
+	$( "#max_taken_dateInput" ).datepicker();
+} );
