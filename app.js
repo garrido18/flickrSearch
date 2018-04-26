@@ -4,11 +4,17 @@ var lng = null;
 
 
 function search() {
+
+	
 	$("#column0").empty();
 	$("#column1").empty();
 	$("#column2").empty();
 	$("#column3").empty();
+<<<<<<< HEAD
 	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=' + api_key;
+=======
+	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=' + api_key + "&user_id=20154996@N00";
+>>>>>>> 19e4563f498e927af2db439b4483750abfab58ed
 	if ($("#textInput").val() != '') {
 		url = url + "&text=" + $("#textInput").val();
 	}
@@ -27,11 +33,15 @@ function search() {
 	if ($("#max_taken_dateInput").val() != '') {
 		url = url + "&max_taken_date=" + $("#max_taken_dateInput").val();
 	}
+<<<<<<< HEAD
 	if($('#location').is(':checked') && lng != null){
 		url = url + "&lat" + lat + "&lon" + lng + "&radius=32&radius_units=km" ;
 	}
+=======
+	
+>>>>>>> 19e4563f498e927af2db439b4483750abfab58ed
 	if(url.length <= 130){
-		url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getRecent&api_key=' + api_key;
+		url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getRecent&api_key=' + api_key + "&user_id=20154996@N00";
 	}
 	url = url + '&format=json&nojsoncallback=1';
 
@@ -59,9 +69,9 @@ function search() {
 			)
 		}
 	}
-
 }
 
+<<<<<<< HEAD
 function showMap(){
 	if($('#location').is(':checked')){
 		$('#map_canvas').css("display", "block");
@@ -120,3 +130,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
+=======
+$( function() {
+	$.datepicker.setDefaults($.datepicker.regional["es"]);
+	$( "#min_upload_dateInput" ).datepicker();
+	$( "#max_upload_dateInput" ).datepicker();
+	$( "#min_taken_dateInput" ).datepicker();
+	$( "#max_taken_dateInput" ).datepicker();
+} );
+>>>>>>> 19e4563f498e927af2db439b4483750abfab58ed
