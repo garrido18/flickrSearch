@@ -7,10 +7,7 @@ function search() {
 	$("#column1").empty();
 	$("#column2").empty();
 	$("#column3").empty();
-	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=' + api_key;
-	if ($("#userInput").val() != '') {
-		url = url + "&user_id=" + $("#userInput").val();
-	}
+	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=' + api_key + "&user_id=20154996@N00";
 	if ($("#textInput").val() != '') {
 		url = url + "&text=" + $("#textInput").val();
 	}
@@ -29,9 +26,9 @@ function search() {
 	if ($("#max_taken_dateInput").val() != '') {
 		url = url + "&max_taken_date=" + $("#max_taken_dateInput").val();
 	}
-	url = url + "&content_type=" + $('#type').val();
+	
 	if(url.length <= 130){
-		url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getRecent&api_key=' + api_key;
+		url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getRecent&api_key=' + api_key + "&user_id=20154996@N00";
 	}
 	url = url + '&format=json&nojsoncallback=1';
 
