@@ -1,4 +1,7 @@
 var page = 0;
+var lat = null;
+var lng = null;
+
 
 function search() {
 	$("#column0").empty();
@@ -6,9 +9,6 @@ function search() {
 	$("#column2").empty();
 	$("#column3").empty();
 	var url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=' + api_key;
-	if ($("#userInput").val() != '') {
-		url = url + "&user_id=" + $("#userInput").val();
-	}
 	if ($("#textInput").val() != '') {
 		url = url + "&text=" + $("#textInput").val();
 	}
@@ -27,7 +27,9 @@ function search() {
 	if ($("#max_taken_dateInput").val() != '') {
 		url = url + "&max_taken_date=" + $("#max_taken_dateInput").val();
 	}
-	url = url + "&content_type=" + $('#type').val();
+	if($('#location').is(':checked') && lng != null){
+		url = url + "&lat" + lat + "&lon" + lng + "&radius=32&radius_units=km" ;
+	}
 	if(url.length <= 130){
 		url = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getRecent&api_key=' + api_key;
 	}
@@ -59,4 +61,62 @@ function search() {
 	}
 
 }
+
+function showMap(){
+	if($('#location').is(':checked')){
+		$('#map_canvas').css("display", "block");
+	} else {
+		$('#map_canvas').css("display", "none");
+	}
+}
+
+
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 6
+    });
+    var marker = new google.maps.Marker({
+        map: map
+    });
+
+    map.addListener('click', function (e) {
+		placeMarker(e.latLng, map);
+    });
+
+    function placeMarker(position, map) {
+		marker.setPosition(position);
+		lat = marker.getPosition().lat();
+		lng = marker.getPosition().lng();
+    }
+    var infoWindow = new google.maps.InfoWindow({ map: map });
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Tu ubicación.');
+            map.setCenter(pos);
+        }, function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+}
+
 

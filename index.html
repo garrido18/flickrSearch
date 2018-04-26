@@ -21,11 +21,16 @@
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
   <link href="lightbox2-master/css/lightbox.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+  <script src="map.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYm-hAtwt9o8U8hF_ZRoOc3GeVyo-MrbY&callback=initMap">
+  </script>
 
 </head>
 
 <body>
-
 
   <!-- Masthead -->
   <header class="masthead text-white text-center">
@@ -39,7 +44,12 @@
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <div class="form-row">
             <div class="col-12 col-md-9 mb-2 mb-md-0 mx-auto">
-              <input id="userInput" type="text" class="form-control form-control-lg" placeholder="Usuario a buscar">
+              <label class="form-check-label" for="location">Localización</label>
+              <input type="checkbox" class="" name="location" id="location" onchange="showMap()">
+              <br>
+              <div id="map_canvas" class="mx-auto" style="display: none;">
+                <div id="map" class="mx-auto" style="width:100%;height:20em"></div>
+              </div>
             </div>
             <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
               </br>
@@ -74,11 +84,10 @@
           </div>
         </div>
       </div>
-    </div>
-    </br>
-    <div class="col-12 col-md-2 mx-auto">
-      <button class="btn btn-block btn-lg btn-primary" onclick="search()">Buscar</button>
-    </div>
+      </br>
+      <div class="col-12 col-md-2 mx-auto">
+        <button class="btn btn-block btn-lg btn-primary" onclick="search()">Buscar</button>
+      </div>
   </header>
 
   <!-- Image Showcases -->
